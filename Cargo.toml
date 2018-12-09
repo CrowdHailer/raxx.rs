@@ -1,0 +1,6 @@
+[package]
+name = "raxx"
+version = "0.1.0"
+authors = ["CrowdHailer <peterhsaxton@gmail.com>"]
+
+[dependencies]

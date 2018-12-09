@@ -1,0 +1,7 @@
+[package]
+name = "my_server"
+version = "0.1.0"
+authors = ["CrowdHailer <peterhsaxton@gmail.com>"]
+
+[dependencies]
+raxx = { path = "../" }
