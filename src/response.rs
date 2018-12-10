@@ -9,6 +9,7 @@ pub enum Status {
 #[derive(Debug)]
 pub struct Head {
     pub status: Status,
+    pub headers: Vec<(String, String)>,
     pub body: bool
 }
 
@@ -27,8 +28,15 @@ pub enum Part {
 pub struct Message { pub head: Head, pub body: String }
 
 impl Head {
+    // Don't like this being mut
+    pub fn set_header(mut self, key: String, value: String) -> Self {
+        self.headers.push((key, value));
+        Self{headers: self.headers, ..self}
+    }
+
     pub fn set_body(self, body: String) -> Message {
         let head = Self{body: true, ..self};
+        let head = head.set_header("content-length".to_string(), body.len().to_string());
         Message{head: head, body: body}
     }
 }

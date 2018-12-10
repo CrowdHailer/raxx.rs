@@ -1,7 +1,8 @@
 [package]
-name = "raxx"
+name = "hello_world"
 version = "0.1.0"
 authors = ["CrowdHailer <peterhsaxton@gmail.com>"]
+edition = "2018"
 
 [dependencies]
-url = "1.7.2"
+raxx = { path = "../" }

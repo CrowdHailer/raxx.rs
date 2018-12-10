@@ -1,16 +1,19 @@
 pub mod request;
 pub mod response;
 pub mod server;
+pub mod simple_server;
 pub mod middleware;
 
+pub use server::Server;
+pub use simple_server::SimpleServer;
+
 pub fn request(method: request::Method, path: String) -> request::Head {
-    request::Head{method, path}
+    request::new(method, path)
 }
 
 pub fn response(status: response::Status) -> response::Head {
-    response::Head{status, body: false}
+    response::Head{status, headers: vec![], body: false}
 }
-
 
 // channel in certain states. If we have a push! function that blows up at the right point. Can even count bytes.
 // call push function send. To be efficient it should have a to_iolist trait.
