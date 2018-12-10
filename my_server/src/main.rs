@@ -10,8 +10,9 @@ pub trait MyIP {
 
 }
 
-impl<C> raxx::server::Simple<C> for MyServer {
-    fn handle_request(&self, request: raxx::request::Message, _channel: C) -> raxx::response::Message {
+impl raxx::server::Simple for MyServer {
+    type Channel = i32;
+    fn handle_request(&self, request: raxx::request::Message, _channel: Self::Channel) -> raxx::response::Message {
         match request.head.method {
             GET =>
                 raxx::response(OK)
