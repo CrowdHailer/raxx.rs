@@ -7,6 +7,7 @@ use raxx::response;
 use raxx::request::Method::*;
 use raxx::response::Status::*;
 
+// match can just be an enum with parameter. needs to be a fetch or error function.
 pub struct HomePage {
 }
 pub trait MyIP {
