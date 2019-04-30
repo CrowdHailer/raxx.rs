@@ -1,10 +1,15 @@
 extern crate hyper;
-use hyper::{Body, Request, Response, Server};
 use hyper::rt::Future;
+use hyper::{Body, Request, Response};
+
+mod web;
 const PHRASE: &str = "Hello, World!";
 
-fn hello_world(_req: Request<Body>) -> Response<Body> {
-    Response::new(Body::from(PHRASE))
+fn hello_world(request: Request<Body>) -> Response<Body> {
+    match web::web_static::handle(&request) {
+        Some(response) => response,
+        None => Response::new(Body::from(PHRASE)),
+    }
 }
 
 fn main() {
