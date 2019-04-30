@@ -24,9 +24,10 @@ pub fn handle<B>(request: &hyper::Request<B>) -> Option<hyper::Response<hyper::B
 }
 
 
-fn lookup(path: &str) -> Option<(&'static str, &'static str)> {
+fn lookup(path: &str) -> Option<(&'static str, &'static [u8])> {
     match path {
-        "/app.css" => Some(("text/css", include_str!("public/app.css"))),
+        "/favicon.ico" => Some(("image/x-icon", include_bytes!("fixed_assets/favicon.ico"))),
+        "/app.css" => Some(("text/css", include_bytes!("built_assets/app.css"))),
         _ => None,
     }
 }

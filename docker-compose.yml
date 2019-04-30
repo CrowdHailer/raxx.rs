@@ -2,8 +2,10 @@ version: '2'
 
 volumes:
   rust_cache:
+  node_modules:
+  built_assets:
 services:
-  kno:
+  my_app:
     build:
       context: "./my_app"
       dockerfile: "Dockerfile"
@@ -14,3 +16,12 @@ services:
     volumes:
       - ./my_app:/usr/src/my_app
       - rust_cache:/usr/src/my_app/target
+      - built_assets:/usr/src/my_app/src/web/built_assets
+  my_app_assets:
+    build:
+      context: "./my_app_assets"
+      dockerfile: "Dockerfile"
+    volumes:
+      - ./my_app_assets:/usr/src/my_app_assets
+      - node_modules:/usr/src/my_app_assets/node_modules
+      - built_assets:/usr/src/my_app_assets/built_assets
