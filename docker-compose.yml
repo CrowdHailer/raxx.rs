@@ -1,0 +1,16 @@
+version: '2'
+
+volumes:
+  rust_cache:
+services:
+  kno:
+    build:
+      context: "./my_app"
+      dockerfile: "Dockerfile"
+    environment:
+      - PORT=8080
+    ports:
+      - 8080:8080
+    volumes:
+      - ./my_app:/usr/src/my_app
+      - rust_cache:/usr/src/my_app/target
