@@ -23,7 +23,6 @@ pub fn handle<B>(request: &hyper::Request<B>) -> Option<hyper::Response<hyper::B
     }
 }
 
-
 fn lookup(path: &str) -> Option<(&'static str, &'static [u8])> {
     match path {
         "/favicon.ico" => Some(("image/x-icon", include_bytes!("fixed_assets/favicon.ico"))),

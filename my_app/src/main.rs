@@ -3,16 +3,16 @@ use hyper::rt::Future;
 use hyper::{Body, Request, Response};
 
 mod web;
-const PHRASE: &str = "Hello, World!";
 
 fn hello_world(request: Request<Body>) -> Response<Body> {
     match web::web_static::handle(&request) {
         Some(response) => response,
-        None => Response::new(Body::from(PHRASE)),
+        None => web::router::handle(&request),
     }
 }
 
 fn main() {
+    // config = Config.from_env()?;
     // Don't need to config port in docker
     // let port = env::var("PORT")
     //     .expect("environment must set a PORT")
